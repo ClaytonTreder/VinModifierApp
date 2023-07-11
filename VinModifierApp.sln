@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinModifierApp.Services.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinModifierApp.Models", "VinModifierApp.Models\VinModifierApp.Models.csproj", "{C54A892C-3ADC-4AC5-9E2C-C11AA92D4715}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinModifierApp.Data", "VinModifierApp.Data\VinModifierApp.Data.csproj", "{7FDA4241-BA68-4613-B121-E0702C8EF76E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C54A892C-3ADC-4AC5-9E2C-C11AA92D4715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C54A892C-3ADC-4AC5-9E2C-C11AA92D4715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C54A892C-3ADC-4AC5-9E2C-C11AA92D4715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FDA4241-BA68-4613-B121-E0702C8EF76E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FDA4241-BA68-4613-B121-E0702C8EF76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FDA4241-BA68-4613-B121-E0702C8EF76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FDA4241-BA68-4613-B121-E0702C8EF76E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
