@@ -39,7 +39,7 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     services.AddSingleton<IConfiguration>(configuration);
 
     services.AddScoped<IConnect, Connect>();
-    services.AddScoped<IFileStorage, DiskFileStorage>();
+    services.AddScoped<IFileStorage, S3FileStorage>();
 
     services.AddScoped<IVehicleRepository, VehicleCollection>();
     services.AddScoped<IVinService, VinService>();
