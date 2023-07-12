@@ -10,9 +10,9 @@ The following project has four api routes. These include:
 
 The first operation that can be completed by the user is use the vin/upload route. This route can support uploading up to three csv files at a time. The format of the csv file is:
 
-integer            dealerId
-string (char(17))  vin
-date               modifiedDate
+integer            dealerId,
+string (char(17))  vin,
+date               modifiedDate,
 
 The route parses and ensures the columns have correct headers and values. After validation the file is archived on an AWS S3 bucket or local disk (This can be changed in program.cs by injecting the DiskFileStorage class as opposed to the S3FileStorage class). After archiving the file data is parsed into and object array and stored on a MongoDB Server.
 
@@ -36,8 +36,8 @@ To get the project running locally you must create a connection string in appset
 
 You can also create an S3 appsetting with the following sub values: 
 
-Bucket
-AccessKeyId
+Bucket | 
+AccessKeyId |
 Secret
 
 If an S3 Bucket is not available update the program.cs file to inject the DiskFileStorage class as opposed to the S3FileStorage class. This will save an archived record in the WebApi/Archive folder.
