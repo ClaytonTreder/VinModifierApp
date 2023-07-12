@@ -5,6 +5,7 @@ using VinModifierApp.FileStorage;
 using VinModifierApp.FileStorage.Disk;
 using VinModifierApp.FileStorage.S3;
 using VinModifierApp.NHTSAApi;
+using VinModifierApp.Services.Augment;
 using VinModifierApp.Services.Data;
 using VinModifierApp.Services.VinService;
 
@@ -40,7 +41,7 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
 
     services.AddScoped<IConnect, Connect>();
     services.AddScoped<IFileStorage, S3FileStorage>();
-
+    services.AddScoped<IAugmentService, AugmentService>();
     services.AddScoped<IVehicleRepository, VehicleCollection>();
     services.AddScoped<IVinService, VinService>();
     services.AddScoped<IDataService, DataService>();

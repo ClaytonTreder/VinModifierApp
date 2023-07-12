@@ -8,10 +8,12 @@ namespace VinModifierApp.Data.MongoDB.Collections;
 public class VehicleCollection : IVehicleRepository
 {
     private readonly IMongoCollection<VehicleModel> Collection;
+    private readonly IMongoCollection<ImportVehicleModel> SimpleCollection;
 
     public VehicleCollection(IConnect connect)
     {
         Collection = connect.GetDatabase().GetCollection<VehicleModel>("Vehicles");
+        SimpleCollection = connect.GetDatabase().GetCollection<ImportVehicleModel>("Vehicles");
     }
 
     public async Task AddVehicle(VehicleModel vehicle)
@@ -22,6 +24,13 @@ public class VehicleCollection : IVehicleRepository
     public async Task AddVehicles(IEnumerable<VehicleModel> vehicle)
     {
         await Collection.InsertManyAsync(vehicle);
+    }
+
+    public async Task<IEnumerable<VehicleModel>> GetUnAugmentedVehicles()
+    {
+        return await Collection
+            .Find(x => x.VinDataPulled == false)
+            .ToListAsync();
     }
 
     public async Task<VehicleModel> GetVehicle(string vin)
@@ -38,10 +47,27 @@ public class VehicleCollection : IVehicleRepository
         return await Collection.Find(filter).ToListAsync();
     }
 
-    public async Task<IEnumerable<VehicleModel>> GetVehicles(int start, int limit)
+    public async Task<IEnumerable<ImportVehicleModel>> GetVehicles(
+        int start = 0,
+        int limit = 25,
+        int? dealerId = null,
+        DateOnly? afterModifiedDate = null)
     {
-        return await Collection
-            .Find(x => x != null)
+
+        FilterDefinition<ImportVehicleModel> filter = Builders<ImportVehicleModel>.Filter.Exists(x => x.Vin); 
+
+        if (dealerId != null)
+        {
+            filter = Builders<ImportVehicleModel>.Filter.Eq(x => x.DealerId, dealerId);
+        }
+
+        if (afterModifiedDate != null)
+        {
+            filter = filter & Builders<ImportVehicleModel>.Filter.Gte(x => x.ModifiedDate, afterModifiedDate);
+        }
+
+        return await SimpleCollection
+            .Find(filter)
             .Skip(start)
             .Limit(limit)
             .ToListAsync();

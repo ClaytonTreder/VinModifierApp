@@ -92,7 +92,7 @@ public class VinService : IVinService
         {
             DealerId = int.Parse(dr["dealerId"] as string),
             Vin = dr["vin"] as string,
-            ModifiedDate = DateTime.Parse(dr["modifiedDate"] as string)
+            ModifiedDate = DateOnly.Parse(dr["modifiedDate"] as string)
         }
         );
     }

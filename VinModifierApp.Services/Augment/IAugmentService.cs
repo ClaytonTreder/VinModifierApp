@@ -8,4 +8,5 @@ namespace VinModifierApp.Services.Augment;
 
 public interface IAugmentService
 {
+    public Task<bool> AugmentAll();
 }

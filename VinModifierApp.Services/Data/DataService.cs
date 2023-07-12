@@ -52,11 +52,15 @@ public class DataService : IDataService
         }
     }
 
-    public async Task<IEnumerable<VehicleModel>> GetAll(int start = 0, int limit = 25)
+    public async Task<IEnumerable<ImportVehicleModel>> GetAll(
+        int start = 0,
+        int limit = 25,
+        int? dealerId = null,
+        DateOnly? afterModifiedDate = null)
     {
         try
         {
-            var vehicles = await VehicleRepository.GetVehicles(start, limit);
+            var vehicles = await VehicleRepository.GetVehicles(start, limit, dealerId, afterModifiedDate);
 
             if (vehicles.Count() > 0)
             {
@@ -68,8 +72,9 @@ public class DataService : IDataService
                         var nhtsaVehicle = nhtsaVehicles?.FirstOrDefault(x => x.Vin == vehicle.Vin);
                         if (nhtsaVehicle != null)
                         {
-                            vehicle.Merge(nhtsaVehicle);
-                            await VehicleRepository.UpdateVehicle(vehicle);
+                            var newWehicle = new VehicleModel();
+                            newWehicle.Merge(nhtsaVehicle);
+                            await VehicleRepository.UpdateVehicle(newWehicle);
                         }
                         else
                         {

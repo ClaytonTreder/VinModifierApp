@@ -25,12 +25,17 @@ public class VehicleController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get([FromQuery] int start = 0, [FromQuery] int limit = 25)
+    public async Task<IActionResult> Get(
+        [FromQuery] int start = 0,
+        [FromQuery] int limit = 25,
+        [FromQuery] int? dealerId = null,
+        [FromQuery] DateTime? afterModifiedDate = null)
     {
         if (limit > 50)
             return BadRequest("Max return results is 50, please update query");
 
-        var vehicles = await DataService.GetAll(start, limit);
+        var vehicles = await DataService.GetAll(start, limit, dealerId,
+            afterModifiedDate == null ? null : DateOnly.FromDateTime(afterModifiedDate.Value));
         return Ok(vehicles);
     }
 }
