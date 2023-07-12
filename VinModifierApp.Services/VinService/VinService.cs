@@ -32,7 +32,7 @@ public class VinService : IVinService
         foreach (var file in files)
         {
             var dt = ConvertCsvToDataTable(file);
-            if (dt == null || !ValidateCSV(dt))
+            if (dt == null || !ValidateCSV(dt, response))
             {
                 response.FailedFiles.Add(file.FileName);
                 continue;
@@ -97,10 +97,8 @@ public class VinService : IVinService
         );
     }
 
-    /// <summary>
-    /// ToDo: Handle failings more gracefully
-    /// </summary>
-    public bool ValidateCSV(DataTable? dataTable)
+
+    public bool ValidateCSV(DataTable? dataTable, VinServiceResponse response)
     {
         try
         {
@@ -111,17 +109,27 @@ public class VinService : IVinService
             // values do not parse
             foreach (var row in dataTable?.AsEnumerable() ?? Enumerable.Empty<DataRow>())
             {
-                var id = row["dealerId"] as string;
-                if (!int.TryParse(id, out var _))
-                    return false;
 
                 var vin = row["vin"] as string;
                 if (vin?.Length != 17)
+                {
+                    response.Errors.Add($"A vin ({vin}) was not 17 chars in length, this could cause issues");
+                }
+
+                var id = row["dealerId"] as string;
+                if (!int.TryParse(id, out var _))
+                {
+                    response.Errors.Add($"A dealerId ({id} for {vin}) was not an integer, aborting validation");
                     return false;
+                }
+
 
                 var modDate = row["modifiedDate"] as string;
                 if (!DateTime.TryParse(modDate, out var _))
+                {
+                    response.Errors.Add($"A modfied date ({modDate} for vin {vin}) was not a valid date, aborting validation");
                     return false;
+                }
             }
             return true;
         }

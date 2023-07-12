@@ -10,4 +10,5 @@ public class VinServiceResponse
         IsSuccess ?
         "Success" :
         $"The following fails failed validation {string.Join(",", FailedFiles)}";
+    public List<string> Errors { get; set; } = new List<string>();
 }

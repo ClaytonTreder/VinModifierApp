@@ -11,7 +11,7 @@ public interface IVinService
 
     public DataTable? ConvertCsvToDataTable(IFormFile file);
 
-    public bool ValidateCSV(DataTable? dataTable);
+    public bool ValidateCSV(DataTable? dataTable, VinServiceResponse response);
 
     public IEnumerable<VehicleModel> ConvertDataTableToArray(DataTable dataTable);
 
