@@ -1,21 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
+using VinModifierApp.Models;
 
 namespace VinModifierApp.WebApi.Controllers;
+
 [ApiController]
 [Route("api/vehicle")]
 public class VehicleController : ControllerBase
 {
-
-    private readonly ILogger<VehicleController> _logger;
+    private readonly ILogger<VehicleController> Logger;
 
     public VehicleController(ILogger<VehicleController> logger)
     {
-        _logger = logger;
+        Logger = logger;
     }
 
-    [HttpGet]
-    public IEnumerable<object> Get()
+    [HttpGet("{id}")]
+    public async Task<IEnumerable<VehicleModel>> Get(int id)
     {
-        return new List<object>();
+
+        return new List<VehicleModel>();
     }
 }

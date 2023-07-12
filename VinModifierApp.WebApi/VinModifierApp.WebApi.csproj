@@ -13,4 +13,18 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VinModifierApp.Models\VinModifierApp.Models.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\VinModifierApp.Services\VinModifierApp.Services.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Archive\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Archive\" />
+  </ItemGroup>
 </Project>

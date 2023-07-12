@@ -7,18 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Interfaces\" />
-    <None Remove="MongoDB\" />
+    <None Remove="S3\" />
+    <None Remove="Disk\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="MongoDB\" />
+    <Folder Include="S3\" />
+    <Folder Include="Disk\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.20.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.107.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VinModifierApp.Models\VinModifierApp.Models.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
   </ItemGroup>
 </Project>
