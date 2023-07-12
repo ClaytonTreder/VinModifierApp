@@ -41,3 +41,5 @@ AccessKeyId |
 Secret
 
 If an S3 Bucket is not available update the program.cs file to inject the DiskFileStorage class as opposed to the S3FileStorage class. This will save an archived record in the WebApi/Archive folder.
+
+An API Key is required in appsettings.json the key is ApiKey and can have any value.
