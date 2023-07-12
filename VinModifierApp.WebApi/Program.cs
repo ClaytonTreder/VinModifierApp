@@ -4,6 +4,8 @@ using VinModifierApp.Data.MongoDB.Collections;
 using VinModifierApp.FileStorage;
 using VinModifierApp.FileStorage.Disk;
 using VinModifierApp.FileStorage.S3;
+using VinModifierApp.NHTSAApi;
+using VinModifierApp.Services.Data;
 using VinModifierApp.Services.VinService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,4 +47,6 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
 
     services.AddScoped<IVehicleRepository, VehicleCollection>();
     services.AddScoped<IVinService, VinService>();
+    services.AddScoped<IDataService, DataService>();
+    services.AddScoped<NHTSA>();
 }

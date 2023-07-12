@@ -11,4 +11,5 @@ public class ImportVehicleModel
     public int DealerId { get; set; }
     public string Vin { get; set; } = string.Empty;
     public DateTime ModifiedDate { get; set; }
+    public bool VinDataPulled { get; set; } = false;
 }

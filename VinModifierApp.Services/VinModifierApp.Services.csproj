@@ -12,15 +12,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VinModifierApp.Models\VinModifierApp.Models.csproj" />
-    <ProjectReference Include="..\VinModifierApp.FileStorage\VinModifierApp.FileStorage.csproj" />
-    <ProjectReference Include="..\VinModifierApp.Data\VinModifierApp.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="VinService\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="VinService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VinModifierApp.NHTSAApi\VinModifierApp.NHTSAApi.csproj" />
+    <ProjectReference Include="..\VinModifierApp.Models\VinModifierApp.Models.csproj" />
+    <ProjectReference Include="..\VinModifierApp.FileStorage\VinModifierApp.FileStorage.csproj" />
+    <ProjectReference Include="..\VinModifierApp.Data\VinModifierApp.Data.csproj" />
   </ItemGroup>
 </Project>

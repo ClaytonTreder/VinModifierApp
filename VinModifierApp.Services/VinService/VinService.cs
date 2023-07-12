@@ -97,7 +97,9 @@ public class VinService : IVinService
         );
     }
 
-
+    /// <summary>
+    /// ToDo: Handle failings more gracefully
+    /// </summary>
     public bool ValidateCSV(DataTable? dataTable)
     {
         try

@@ -16,6 +16,8 @@ public class VinController : ControllerBase
         VinService = vinService;
     }
 
+
+    /// <param name="files">Max amount to send is 3 files</param>
     [HttpPost]
     public async Task<IActionResult> Upload([FromForm] IFormFile[] files)
     {
