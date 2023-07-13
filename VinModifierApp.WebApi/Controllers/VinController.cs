@@ -52,7 +52,7 @@ public class VinController : ControllerBase
         {
             var res = await AugmentService.AugmentAll();
             if (res)
-                return Ok(res);
+                return Ok("The operation has completed successfully");
 
             return StatusCode(500, "The operation failed please check the logs");
         }

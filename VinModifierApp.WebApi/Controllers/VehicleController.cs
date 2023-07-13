@@ -20,8 +20,17 @@ public class VehicleController : ControllerBase
     [HttpGet("{vin}")]
     public async Task<IActionResult> Get(string vin)
     {
-        var vehicle = await DataService.GetByVin(vin);
-        return Ok(vehicle);
+        try
+        {
+            var vehicle = await DataService.GetByVin(vin);
+            return Ok(vehicle);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(new EventId(), ex, ex.Message);
+            return StatusCode(500, "Unhandled internal server error please check the logs");
+
+        }
     }
 
     [HttpGet]
@@ -31,11 +40,21 @@ public class VehicleController : ControllerBase
         [FromQuery] int? dealerId = null,
         [FromQuery] DateTime? afterModifiedDate = null)
     {
-        if (limit > 50)
-            return BadRequest("Max return results is 50, please update query");
+        try
+        {
+            if (limit > 50)
+                return BadRequest("Max return results is 50, please update query");
 
-        var vehicles = await DataService.GetAll(start, limit, dealerId,
-            afterModifiedDate == null ? null : DateOnly.FromDateTime(afterModifiedDate.Value));
-        return Ok(vehicles);
+            var vehicles = await DataService.GetAll(start, limit, dealerId,
+                afterModifiedDate == null ? null : DateOnly.FromDateTime(afterModifiedDate.Value));
+            return Ok(vehicles);
+
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(new EventId(), ex, ex.Message);
+            return StatusCode(500, "Unhandled internal server error please check the logs");
+
+        }
     }
 }
